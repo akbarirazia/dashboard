@@ -55,8 +55,8 @@ export default function PostList() {
             <span className='text-indigo-600 font-medium'>No posts found</span>
           </div>
           <p className='text-gray-600 max-w-md mx-auto'>
-            It looks like there aren't any posts yet. Check back later or create
-            one!
+            It looks like there are not any posts yet. Check back later or
+            create one!
           </p>
         </div>
       )}

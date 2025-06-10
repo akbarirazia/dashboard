@@ -1,6 +1,5 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
 import { fetchPost } from '@/lib/api';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -12,17 +11,20 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 
-export default function PostPage({ params }: { params: { id: string } }) {
-  const {
-    data: post,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ['post', params.id],
-    queryFn: () => fetchPost(Number(params.id)),
-  });
+export default async function PostPage(props: {
+  params: Promise<{ id: string }>;
+}) {
+  const params = await props.params;
+  let post = null;
+  let error = null;
 
-  if (isLoading)
+  try {
+    post = await fetchPost(Number(params.id));
+  } catch (err) {
+    error = err instanceof Error ? err : new Error('Failed to fetch post');
+  }
+
+  if (!post && !error) {
     return (
       <div className='flex items-center justify-center min-h-[60vh]'>
         <div className='text-center'>
@@ -31,8 +33,9 @@ export default function PostPage({ params }: { params: { id: string } }) {
         </div>
       </div>
     );
+  }
 
-  if (error)
+  if (error) {
     return (
       <div className='max-w-2xl mx-auto p-6'>
         <div className='bg-rose-50 border border-rose-200 rounded-xl p-6 text-center'>
@@ -51,6 +54,7 @@ export default function PostPage({ params }: { params: { id: string } }) {
         </div>
       </div>
     );
+  }
 
   return (
     <div className='max-w-4xl mx-auto px-4 sm:px-6 py-8'>
@@ -65,36 +69,40 @@ export default function PostPage({ params }: { params: { id: string } }) {
       </div>
 
       <Card className='border-0 shadow-lg overflow-hidden'>
-        {/* Decorative header */}
         <div className='bg-gradient-to-r from-indigo-500 to-purple-600 h-2 w-full' />
 
         <CardHeader className='pb-4 relative'>
           <div className='flex justify-between items-start'>
             <CardTitle className='text-3xl font-bold text-gray-900 tracking-tight'>
-              {post?.title}
+              {post.title}
             </CardTitle>
 
             <div className='flex gap-2'>
-              <button className='p-2 text-gray-400 hover:text-indigo-600 transition-colors'>
+              <button
+                className='p-2 text-gray-400 hover:text-indigo-600 transition-colors'
+                aria-label='Bookmark post'
+              >
                 <Bookmark className='h-5 w-5' />
               </button>
-              <button className='p-2 text-gray-400 hover:text-indigo-600 transition-colors'>
+              <button
+                className='p-2 text-gray-400 hover:text-indigo-600 transition-colors'
+                aria-label='Share post'
+              >
                 <Share2 className='h-5 w-5' />
               </button>
             </div>
           </div>
 
           <div className='text-sm text-indigo-600 font-medium mt-2'>
-            Post #{post?.id}
+            Post #{post.id}
           </div>
         </CardHeader>
 
         <CardContent className='pt-0'>
           <div className='prose prose-indigo max-w-none text-gray-700'>
-            <p className='text-lg leading-relaxed'>{post?.body}</p>
+            <p className='text-lg leading-relaxed'>{post.body}</p>
           </div>
 
-          {/* Decorative footer */}
           <div className='mt-8 pt-6 border-t border-gray-100 flex justify-between items-center'>
             <Link
               href='/'
