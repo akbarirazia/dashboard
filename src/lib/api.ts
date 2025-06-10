@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Post } from './types';
 
 const api = axios.create({
-  baseURL: 'https://jsonplaceholder.typicode.com',
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
 export const fetchPosts = async () => {
