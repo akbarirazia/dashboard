@@ -1,4 +1,3 @@
-// components/PostForm.tsx
 'use client';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -17,6 +16,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Editor } from '@tinymce/tinymce-react';
 import { useRouter } from 'next/navigation';
+import { Loader2, ArrowLeft, PenLine } from 'lucide-react';
 
 interface PostFormProps {
   post?: Post;
@@ -48,59 +48,123 @@ export default function PostForm({ post }: PostFormProps) {
   };
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
-        <FormField
-          control={form.control}
-          name='title'
-          rules={{ required: 'Title is required' }}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Title</FormLabel>
-              <FormControl>
-                <Input placeholder='Enter post title' {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='body'
-          rules={{ required: 'Body is required' }}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Body</FormLabel>
-              <FormControl>
-                <Editor
-                  apiKey={apiKey}
-                  value={field.value}
-                  onEditorChange={field.onChange}
-                  init={{
-                    height: 400,
-                    menubar: false,
-                    plugins: [
-                      'advlist autolink lists link image charmap print preview anchor',
-                      'searchreplace visualblocks code fullscreen',
-                      'insertdatetime media table paste code help wordcount',
-                    ],
-                    toolbar:
-                      'undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | removeformat | help',
-                  }}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type='submit' disabled={mutation.isPending}>
-          {mutation.isPending
-            ? 'Saving...'
-            : post
-            ? 'Update Post'
-            : 'Create Post'}
+    <div className='max-w-full mx-auto px-4 sm:px-6 py-8'>
+      <div className='mb-6'>
+        <Button
+          variant='ghost'
+          onClick={() => router.back()}
+          className='text-indigo-600 hover:text-indigo-800'
+        >
+          <ArrowLeft className='h-4 w-4 mr-2' />
+          Back
         </Button>
-      </form>
-    </Form>
+      </div>
+
+      <div className='bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden'>
+        {/* Form Header */}
+        <div className='bg-gradient-to-r from-indigo-50 to-purple-50 border-b border-gray-200 p-6'>
+          <div className='flex items-center gap-3'>
+            <div className='bg-indigo-100 p-2 rounded-lg'>
+              <PenLine className='h-5 w-5 text-indigo-600' />
+            </div>
+            <h2 className='text-2xl font-bold text-gray-900'>
+              {post ? 'Edit Post' : 'Create New Post'}
+            </h2>
+          </div>
+          <p className='text-gray-600 mt-1'>
+            {post
+              ? 'Update your existing post'
+              : 'Write something amazing to share with the world'}
+          </p>
+        </div>
+
+        {/* Form Content */}
+        <div className='p-6'>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+              <FormField
+                control={form.control}
+                name='title'
+                rules={{ required: 'Title is required' }}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className='text-gray-700 font-medium'>
+                      Post Title
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder='Enter a captivating title...'
+                        {...field}
+                        className='border-gray-300 focus:border-indigo-500 focus:ring-indigo-500'
+                      />
+                    </FormControl>
+                    <FormMessage className='text-rose-600' />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name='body'
+                rules={{ required: 'Content is required' }}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className='text-gray-700 font-medium'>
+                      Post Content
+                    </FormLabel>
+                    <FormControl>
+                      <div className='rounded-lg overflow-hidden border border-gray-300'>
+                        <Editor
+                          apiKey={apiKey}
+                          value={field.value}
+                          onEditorChange={field.onChange}
+                          init={{
+                            height: 500,
+                            menubar: false,
+                            skin: 'oxide',
+                            content_css: 'default',
+                            plugins: [
+                              'advlist autolink lists link image charmap print preview anchor',
+                              'searchreplace visualblocks code fullscreen',
+                              'insertdatetime media table paste code help wordcount',
+                            ],
+                            toolbar:
+                              'undo redo | formatselect | bold italic underline | \
+                              alignleft aligncenter alignright | \
+                              bullist numlist outdent indent | removeformat | help',
+                            content_style:
+                              'body { font-family:Inter,sans-serif; font-size:16px }',
+                          }}
+                        />
+                      </div>
+                    </FormControl>
+                    <FormMessage className='text-rose-600' />
+                  </FormItem>
+                )}
+              />
+
+              <div className='flex justify-end pt-4 border-t border-gray-200'>
+                <Button
+                  type='submit'
+                  disabled={mutation.isPending}
+                  className='bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-md text-white'
+                >
+                  {mutation.isPending ? (
+                    <>
+                      <Loader2 className='h-4 w-4 mr-2 animate-spin' />
+                      Saving...
+                    </>
+                  ) : post ? (
+                    'Update Post'
+                  ) : (
+                    'Publish Post'
+                  )}
+                </Button>
+              </div>
+            </form>
+          </Form>
+        </div>
+      </div>
+    </div>
   );
 }

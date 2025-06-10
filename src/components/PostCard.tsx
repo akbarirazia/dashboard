@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Post } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Bookmark } from 'lucide-react';
+import { Bookmark } from 'lucide-react';
 
 interface PostCardProps {
   post: Post;

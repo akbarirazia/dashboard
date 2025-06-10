@@ -24,7 +24,7 @@ export default function EditPost({ params }: { params: { id: string } }) {
     );
 
   return (
-    <div className='max-w-2xl mx-auto'>
+    <div className='max-w-4xl mx-auto'>
       <h1 className='text-3xl font-bold mb-6'>Edit Post</h1>
       <PostForm post={post} />
     </div>
