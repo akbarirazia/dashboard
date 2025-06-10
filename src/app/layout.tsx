@@ -49,20 +49,23 @@ export default function RootLayout({
         <QueryClientProvider client={queryClient}>
           <nav className='bg-white shadow-lg p-4 md:p-6 sticky top-0 z-50'>
             <div className='container mx-auto flex max-w-7xl justify-between items-center'>
-              <Link href='/' className='text-2xl font-bold text-gradient '>
+              <Link
+                href='/'
+                className='text-2xl font-bold text-gradient cursor-pointer '
+              >
                 Post Dashboard
               </Link>
               <div className='flex gap-4'>
                 <Link href='/'>
                   <Button
                     variant='ghost'
-                    className='text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 rounded-xl text-base '
+                    className='text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 rounded-xl text-base cursor-pointer '
                   >
                     Posts
                   </Button>
                 </Link>
                 <Link href='/admin'>
-                  <Button className='bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white  rounded-xl shadow-md'>
+                  <Button className='bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white  rounded-xl shadow-md cursor-pointer'>
                     Admin
                   </Button>
                 </Link>
