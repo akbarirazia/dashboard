@@ -1,5 +1,3 @@
-'use client';
-
 import { fetchPost } from '@/lib/api';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -57,13 +55,13 @@ export default async function PostPage(props: {
   }
 
   return (
-    <div className='max-w-4xl mx-auto px-4 sm:px-6 py-8'>
-      <div className='mb-6'>
+    <div className='max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8'>
+      <div className='mb-4 sm:mb-6'>
         <Link
           href='/'
-          className='inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-800 transition-colors'
+          className='inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-800 transition-colors text-sm sm:text-base'
         >
-          <ArrowLeft className='h-5 w-5' />
+          <ArrowLeft className='h-4 w-4 sm:h-5 sm:w-5' />
           <span>All Posts</span>
         </Link>
       </div>
@@ -72,20 +70,20 @@ export default async function PostPage(props: {
         <div className='bg-gradient-to-r from-indigo-500 to-purple-600 h-2 w-full' />
 
         <CardHeader className='pb-4 relative'>
-          <div className='flex justify-between items-start'>
-            <CardTitle className='text-3xl font-bold text-gray-900 tracking-tight'>
+          <div className='flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3'>
+            <CardTitle className='text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 tracking-tight break-words'>
               {post.title}
             </CardTitle>
 
-            <div className='flex gap-2'>
+            <div className='flex gap-2 sm:gap-2 self-end sm:self-auto'>
               <button
-                className='p-2 text-gray-400 hover:text-indigo-600 transition-colors'
+                className='p-1 sm:p-2 text-gray-400 hover:text-indigo-600 transition-colors'
                 aria-label='Bookmark post'
               >
                 <Bookmark className='h-5 w-5' />
               </button>
               <button
-                className='p-2 text-gray-400 hover:text-indigo-600 transition-colors'
+                className='p-1 sm:p-2 text-gray-400 hover:text-indigo-600 transition-colors'
                 aria-label='Share post'
               >
                 <Share2 className='h-5 w-5' />
@@ -100,19 +98,21 @@ export default async function PostPage(props: {
 
         <CardContent className='pt-0'>
           <div className='prose prose-indigo max-w-none text-gray-700'>
-            <p className='text-lg leading-relaxed'>{post.body}</p>
+            <p className='text-base sm:text-lg leading-relaxed'>{post.body}</p>
           </div>
 
-          <div className='mt-8 pt-6 border-t border-gray-100 flex justify-between items-center'>
+          <div className='mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0'>
             <Link
               href='/'
-              className='inline-flex items-center gap-1 text-indigo-600 hover:text-indigo-800 transition-colors'
+              className='inline-flex items-center gap-1 text-indigo-600 hover:text-indigo-800 transition-colors text-sm sm:text-base'
             >
               <ArrowLeft className='h-4 w-4' />
               <span>Back to all posts</span>
             </Link>
 
-            <div className='text-sm text-gray-500'>Last updated just now</div>
+            <div className='text-xs sm:text-sm text-gray-500'>
+              Last updated just now
+            </div>
           </div>
         </CardContent>
       </Card>

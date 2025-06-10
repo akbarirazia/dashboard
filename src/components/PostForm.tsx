@@ -16,7 +16,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Editor } from '@tinymce/tinymce-react';
 import { useRouter } from 'next/navigation';
-import { Loader2, ArrowLeft, PenLine } from 'lucide-react';
+import { Loader2, PenLine } from 'lucide-react';
 
 interface PostFormProps {
   post?: Post;
@@ -48,18 +48,7 @@ export default function PostForm({ post }: PostFormProps) {
   };
 
   return (
-    <div className='max-w-full mx-auto px-4 sm:px-6 py-8'>
-      <div className='mb-6'>
-        <Button
-          variant='ghost'
-          onClick={() => router.back()}
-          className='text-indigo-600 hover:text-indigo-800'
-        >
-          <ArrowLeft className='h-4 w-4 mr-2' />
-          Back
-        </Button>
-      </div>
-
+    <div className='max-w-full sm:max-w-4xl mx-auto sm:px-6 py-4'>
       <div className='bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden'>
         {/* Form Header */}
         <div className='bg-gradient-to-r from-indigo-50 to-purple-50 border-b border-gray-200 p-6'>
