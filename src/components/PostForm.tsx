@@ -28,6 +28,7 @@ export default function PostForm({ post }: PostFormProps) {
   const form = useForm<Post>({
     defaultValues: post || { title: '', body: '', userId: 1 },
   });
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
   const mutation = useMutation({
     mutationFn: post?.id
@@ -72,7 +73,7 @@ export default function PostForm({ post }: PostFormProps) {
               <FormLabel>Body</FormLabel>
               <FormControl>
                 <Editor
-                  apiKey='by1087fc5tveixu3gv0w7a2g0j2bfliba42makrygqa2qgg2' // Replace with your TinyMCE API key
+                  apiKey={apiKey}
                   value={field.value}
                   onEditorChange={field.onChange}
                   init={{
