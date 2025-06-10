@@ -3,7 +3,7 @@ This is a [Next.js](https://nextjs.org) project that is a simple user dashboard 
 ## To run the project, first create and env file containing 
 
 ```bash
-NEXT_PUBLIC_API_KEY={vave}
+NEXT_PUBLIC_API_KEY={valve}
 NEXT_PUBLIC_API_URL={your-api}
 ```
 Or request the owner to give you a copy of the env file
