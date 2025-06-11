@@ -15,6 +15,7 @@ import {
   DialogFooter,
 } from '@/components/ui/dialog';
 import { Post } from '@/lib/types';
+import { toTitleCase } from '@/lib/utils';
 
 export default function AdminDashboard() {
   const queryClient = useQueryClient();
@@ -155,7 +156,7 @@ export default function AdminDashboard() {
             <div className='p-5 pb-3'>
               <div className='flex justify-between items-start gap-2'>
                 <h3 className='font-bold text-base sm:text-lg text-gray-900 line-clamp-2'>
-                  {post.title}
+                  {toTitleCase(post.title)}
                 </h3>
                 <span className='bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full whitespace-nowrap'>
                   #{post.id}
