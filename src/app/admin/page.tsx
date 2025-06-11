@@ -149,11 +149,13 @@ export default function AdminDashboard() {
         {posts?.map((post) => (
           <div
             key={post.id}
-            className={`bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 ${
+            className={`bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-all relative duration-300 flex flex-col ${
               deletingId === post.id ? 'opacity-50' : ''
             }`}
           >
-            <div className='p-5 pb-3'>
+            <div className='p-5 pb-3 flex-grow'>
+              {' '}
+              {/* Changed to flex-grow */}
               <div className='flex justify-between items-start gap-2'>
                 <h3 className='font-bold text-base sm:text-lg text-gray-900 line-clamp-2'>
                   {toTitleCase(post.title)}
@@ -162,13 +164,14 @@ export default function AdminDashboard() {
                   #{post.id}
                 </span>
               </div>
-
               <p className='text-gray-500 mt-3 text-sm sm:text-base line-clamp-3'>
                 {post.body}
               </p>
             </div>
 
-            <div className='px-5 pb-4 pt-3 border-t border-gray-100 bg-gray-50 flex justify-between items-center'>
+            <div className='px-5 pb-4 pt-3 border-t border-gray-100 bg-gray-50 flex justify-between items-center mt-auto'>
+              {' '}
+              {/* Added mt-auto */}
               <Link
                 href={`/posts/${post.id}`}
                 className='text-xs sm:text-sm font-medium text-indigo-600 hover:text-indigo-800 flex items-center gap-1'
@@ -176,7 +179,6 @@ export default function AdminDashboard() {
                 <ExternalLink className='h-3 w-3 sm:h-4 sm:w-4' />
                 <span>View</span>
               </Link>
-
               <div className='flex gap-2'>
                 <Link href={`/admin/edit/${post.id}`}>
                   <Button
