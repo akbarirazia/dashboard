@@ -70,9 +70,9 @@ export default async function PostPage(props: {
       <Card className='border-0 shadow-lg overflow-hidden'>
         <div className='bg-gradient-to-r from-indigo-500 to-purple-600 h-2 w-full' />
 
-        <CardHeader className='pb-4 relative'>
+        <CardHeader className=' relative my-7'>
           <div className='flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3'>
-            <CardTitle className='text-xl sm:text-2xl md:text-3xl font-bold mt-3 text-gray-900 tracking-tight break-words'>
+            <CardTitle className='text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 tracking-tight break-words'>
               {toTitleCase(post.title)}
             </CardTitle>
 
