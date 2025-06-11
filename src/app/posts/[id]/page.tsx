@@ -72,7 +72,7 @@ export default async function PostPage(props: {
 
         <CardHeader className='pb-4 relative'>
           <div className='flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3'>
-            <CardTitle className='text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 tracking-tight break-words'>
+            <CardTitle className='text-xl sm:text-2xl md:text-3xl font-bold mt-3 text-gray-900 tracking-tight break-words'>
               {toTitleCase(post.title)}
             </CardTitle>
 
@@ -99,7 +99,15 @@ export default async function PostPage(props: {
 
         <CardContent className='pt-0'>
           <div className='prose prose-indigo max-w-none text-gray-700'>
-            <p className='text-base sm:text-lg leading-relaxed'>{post.body}</p>
+            <p className='text-md sm:text-base leading-relaxed'>
+              Normal {post.body}.
+              <br />
+              <br />
+              {post.body}
+              <br />
+              <br />
+              {post.body}
+            </p>
           </div>
 
           <div className='mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0'>
