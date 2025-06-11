@@ -57,6 +57,7 @@ export default function PostCard({ post }: PostCardProps) {
             text-sm
             transition-colors duration-300
             mb-6
+            leading-6
           '
           >
             {toTitleCase(post.body)}
