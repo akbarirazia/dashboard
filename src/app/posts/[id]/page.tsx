@@ -56,7 +56,7 @@ export default async function PostPage(props: {
   }
 
   return (
-    <div className='max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8'>
+    <div className='max-w-4xl mx-auto  sm:px-6 py-6 sm:py-8'>
       <div className='mb-4 sm:mb-6'>
         <Link
           href='/'
@@ -99,7 +99,7 @@ export default async function PostPage(props: {
 
         <CardContent className='pt-0'>
           <div className='prose prose-indigo max-w-none text-gray-700'>
-            <p className='text-md sm:text-base leading-relaxed'>
+            <p className='text-md sm:text-base leading-relaxed '>
               Normal {post.body}.
               <br />
               <br />
