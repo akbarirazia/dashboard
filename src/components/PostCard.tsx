@@ -21,10 +21,10 @@ export default function PostCard({ post }: PostCardProps) {
         hover:border-indigo-200
       '
       >
-        <CardHeader className='pb-3 relative'>
+        <CardHeader className='relative'>
           {/* Optional bookmark icon */}
           <button
-            className='absolute top-4 right-4 text-gray-300 hover:text-indigo-500 transition-colors'
+            className='absolute top-0 right-4 text-gray-300 hover:text-indigo-500 transition-colors'
             onClick={(e) => {
               e.preventDefault();
               // Add bookmark functionality here
@@ -35,10 +35,10 @@ export default function PostCard({ post }: PostCardProps) {
 
           <CardTitle
             className='
-            text-xl font-semibold text-gray-900
+            text-lg font-semibold text-gray-900
             group-hover:text-indigo-600 
             transition-colors duration-300
-            line-clamp-2
+            line-clamp-1
             pr-6
             titlecase
           '
@@ -52,13 +52,14 @@ export default function PostCard({ post }: PostCardProps) {
         <CardContent className='pt-0 flex flex-col flex-grow'>
           <p
             className='
-            text-gray-600 line-clamp-3
+            text-gray-600 line-clamp-5
             group-hover:text-gray-700 
+            text-sm
             transition-colors duration-300
-            mb-4
+            mb-6
           '
           >
-            {post.body}
+            {toTitleCase(post.body)}
           </p>
 
           <div

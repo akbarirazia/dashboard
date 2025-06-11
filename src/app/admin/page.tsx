@@ -157,14 +157,14 @@ export default function AdminDashboard() {
               {' '}
               {/* Changed to flex-grow */}
               <div className='flex justify-between items-start gap-2'>
-                <h3 className='font-bold text-base sm:text-lg text-gray-900 line-clamp-2'>
+                <h3 className='font-bold text-base sm:text-lg text-gray-900 line-clamp-1'>
                   {toTitleCase(post.title)}
                 </h3>
                 <span className='bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full whitespace-nowrap'>
                   #{post.id}
                 </span>
               </div>
-              <p className='text-gray-500 my-3 text-sm sm:text-base line-clamp-4'>
+              <p className='text-gray-500 my-3 text-sm sm:text-md line-clamp-5'>
                 {post.body}
               </p>
             </div>
