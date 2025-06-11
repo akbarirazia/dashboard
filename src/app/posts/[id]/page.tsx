@@ -8,6 +8,7 @@ import {
   Share2,
 } from 'lucide-react';
 import Link from 'next/link';
+import { toTitleCase } from '@/lib/utils';
 
 export default async function PostPage(props: {
   params: Promise<{ id: string }>;
@@ -72,7 +73,7 @@ export default async function PostPage(props: {
         <CardHeader className='pb-4 relative'>
           <div className='flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3'>
             <CardTitle className='text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 tracking-tight break-words'>
-              {post.title}
+              {toTitleCase(post.title)}
             </CardTitle>
 
             <div className='flex gap-2 sm:gap-2 self-end sm:self-auto'>

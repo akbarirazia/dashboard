@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Post } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Bookmark } from 'lucide-react';
+import { toTitleCase } from '@/lib/utils';
 
 interface PostCardProps {
   post: Post;
@@ -39,9 +40,10 @@ export default function PostCard({ post }: PostCardProps) {
             transition-colors duration-300
             line-clamp-2
             pr-6
+            titlecase
           '
           >
-            {post.title}
+            {toTitleCase(post.title)}
           </CardTitle>
         </CardHeader>
         {/* Decorative accent bar
