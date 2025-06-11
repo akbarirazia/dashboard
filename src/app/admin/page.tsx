@@ -164,7 +164,7 @@ export default function AdminDashboard() {
                   #{post.id}
                 </span>
               </div>
-              <p className='text-gray-500 mt-3 text-sm sm:text-base line-clamp-3'>
+              <p className='text-gray-500 my-3 text-sm sm:text-base line-clamp-4'>
                 {post.body}
               </p>
             </div>
